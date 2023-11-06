@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import React from "react";
 import { ClerkProvider } from "@clerk/nextjs";
+import { ThemeProvider } from "@/context/ThemeProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -19,7 +20,7 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "DevOverflow",
   description:
-    "A Community driven platform for asking and answering programming questions. Get help, share knowledge, and collaborate with developers from around the world. Explre topics in web development, mobile app development, algorithms, data structures, and more.",
+    "A Community driven platform for asking and answering programming questions. Get help, share knowledge, and collaborate with developers from around the world. Explore topics in web development, mobile app development, algorithms, data structures, and more.",
   icons: {
     icon: "/assets/images/site-logo.svg",
   },
@@ -41,7 +42,7 @@ export default function RootLayout({
     >
       <html lang="en">
         <body className={`${inter.className} ${spaceGrotesk.className}`}>
-          {children}
+          <ThemeProvider>{children}</ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
