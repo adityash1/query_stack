@@ -15,3 +15,41 @@ export const themes = [
     icon: "/assets/icons/computer.svg",
   },
 ];
+
+export const sidebarLinks = [
+  {
+    route: "/",
+    label: "Home",
+    icon: "/assets/icons/home.svg",
+  },
+  {
+    route: "/community",
+    label: "Community",
+    icon: "/assets/icons/users.svg",
+  },
+  {
+    route: "/collection",
+    label: "Collections",
+    icon: "/assets/icons/star.svg",
+  },
+  {
+    route: "/find-jobs",
+    label: "Find Jobs",
+    icon: "/assets/icons/suitcase.svg",
+  },
+  {
+    route: "/tags",
+    label: "Tags",
+    icon: "/assets/icons/tag.svg",
+  },
+  {
+    route: "/communities",
+    label: "Communities",
+    icon: "/assets/icons/users.svg",
+  },
+  {
+    route: "/ask-question",
+    label: "Ask a Question",
+    icon: "/assets/icons/question.svg",
+  },
+];
