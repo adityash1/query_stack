@@ -3,6 +3,7 @@
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
@@ -30,12 +31,18 @@ const Filter = ({ filters, otherClasses, containerClasses }: Props) => {
             <SelectValue placeholder="Select a Filter" />
           </div>
         </SelectTrigger>
-        <SelectContent>
-          {filters.map((item) => (
-            <SelectItem key={item.value} value={item.value}>
-              {item.name}
-            </SelectItem>
-          ))}
+        <SelectContent className="dark:border-dark-400 dark:bg-dark-300">
+          <SelectGroup>
+            {filters.map((item) => (
+              <SelectItem
+                key={item.value}
+                value={item.value}
+                className="text-dark100_light900 focus:bg-primary-100 dark:focus:bg-dark-400"
+              >
+                {item.name}
+              </SelectItem>
+            ))}
+          </SelectGroup>
         </SelectContent>
       </Select>
     </div>
