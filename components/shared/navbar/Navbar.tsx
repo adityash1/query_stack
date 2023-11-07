@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { SignedIn, UserButton } from "@clerk/nextjs";
-import Theme from "@/components/shared/Theme";
-import { MobileNav } from "@/components/shared/MobileNav";
+import Theme from "@/components/shared/navbar/Theme";
+import { MobileNav } from "@/components/shared/navbar/MobileNav";
 import GlobalSearch from "@/components/shared/search/GlobalSearch";
 
 const Navbar = () => {

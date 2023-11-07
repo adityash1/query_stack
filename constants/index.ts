@@ -43,9 +43,9 @@ export const sidebarLinks = [
     icon: "/assets/icons/tag.svg",
   },
   {
-    route: "/communities",
-    label: "Communities",
-    icon: "/assets/icons/users.svg",
+    route: "/profile",
+    label: "Profile",
+    icon: "/assets/icons/user.svg",
   },
   {
     route: "/ask-question",
