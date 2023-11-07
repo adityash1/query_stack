@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import RenderTag from "@/components/shared/RenderTag";
-import { put } from "@jridgewell/set-array";
 
 const popularTags = [
   {

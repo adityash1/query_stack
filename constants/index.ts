@@ -1,3 +1,5 @@
+import { SidebarLinkType } from "@/types";
+
 export const themes = [
   {
     value: "light",
@@ -16,7 +18,7 @@ export const themes = [
   },
 ];
 
-export const sidebarLinks = [
+export const sidebarLinks: SidebarLinkType[] = [
   {
     route: "/",
     label: "Home",
