@@ -2,7 +2,7 @@ import { HomePageFilters } from "@/constants/filters";
 import { Button } from "@/components/ui/button";
 
 const HomeFilters = () => {
-  const active = "frequent";
+  const active = "recommended";
 
   return (
     <div className="mt-10 hidden flex-wrap gap-3 md:flex">
