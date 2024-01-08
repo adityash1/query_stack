@@ -15,17 +15,18 @@ import {
 import { Input } from "@/components/ui/input";
 import { questionSchema } from "@/lib/validations";
 import { Editor } from "@tinymce/tinymce-react";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { createQuestion } from "@/lib/actions/question.action";
+
+const type: any = "create";
 
 export function Question() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const editorRef = useRef(null);
-  // const log = () => {
-  //   if (editorRef.current) {
-  //     console.log(editorRef.current.getContent());
-  //   }
-  // };
 
   const form = useForm<z.infer<typeof questionSchema>>({
     resolver: zodResolver(questionSchema),
@@ -36,10 +37,14 @@ export function Question() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof questionSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof questionSchema>) {
+    setIsSubmitting(true);
+    try {
+      await createQuestion(values);
+    } catch (error) {
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   const handleInputKeyDown = (
@@ -120,6 +125,8 @@ export function Question() {
                     // @ts-ignore
                     (editorRef.current = editor)
                   }
+                  onBlur={field.onBlur}
+                  onEditorChange={(content) => field.onChange(content)}
                   initialValue=""
                   init={{
                     height: 350,
@@ -203,7 +210,17 @@ export function Question() {
             </FormItem>
           )}
         />
-        {/* <Button type="submit">Submit</Button> */}
+        <Button
+          className="primary-gradient w-fit !text-light-900"
+          disabled={isSubmitting}
+          type="submit"
+        >
+          {isSubmitting ? (
+            <>{type === "edit" ? "Editing..." : "Posting..."}</>
+          ) : (
+            <>{type === "edit" ? "Edit Question" : "Ask a Question"}</>
+          )}
+        </Button>
       </form>
     </Form>
   );
