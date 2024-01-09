@@ -84,7 +84,9 @@ const questions = [
   },
 ];
 
-const Home = () => {
+const Home = async () => {
+  // const result = await getQuestions();
+
   return (
     <>
       <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row  sm:items-center">
