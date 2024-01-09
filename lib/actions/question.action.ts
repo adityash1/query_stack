@@ -8,6 +8,7 @@ import {
   GetQuestionsParams,
 } from "@/lib/actions/shared.types";
 import User from "@/database/user.model";
+import { revalidatePath } from "next/cache";
 
 export async function getQuestions(params: GetQuestionsParams) {
   try {
@@ -20,7 +21,8 @@ export async function getQuestions(params: GetQuestionsParams) {
       .populate({
         path: "author",
         model: User,
-      });
+      })
+      .sort({ createdAt: -1 });
 
     return { questions };
   } catch (error) {
@@ -54,5 +56,7 @@ export async function createQuestion(params: CreateQuestionParams) {
     await Question.findByIdAndUpdate(question._id, {
       $push: { tags: { $each: tagDocuments } },
     });
+
+    revalidatePath(path);
   } catch (error) {}
 }
