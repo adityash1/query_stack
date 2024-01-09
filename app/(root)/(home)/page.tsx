@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
@@ -8,84 +6,10 @@ import { HomePageFilters } from "@/constants/filters";
 import HomeFilters from "@/components/home/HomeFilters";
 import NoResult from "@/components/shared/NoResult";
 import QuestionCard from "@/components/shared/cards/QuestionCard";
-
-const questions = [
-  {
-    _id: "1",
-    title:
-      "The Lightning Component c:LWC_PizzaTracker generated invalid output for field status. Error How to solve this",
-    tags: [
-      {
-        _id: "1",
-        name: "python",
-      },
-      {
-        _id: "2",
-        name: "sql",
-      },
-    ],
-    author: {
-      _id: "1",
-      name: "Aditya Sharma",
-      picture: "",
-    },
-    upvotes: 10,
-    views: 10000,
-    answers: [{}],
-    createdAt: new Date("2023-11-08T12:00:00.000Z"),
-  },
-  {
-    _id: "2",
-    title:
-      "An HTML table where specific cells come from values in a Google Sheet identified by their neighboring cell",
-    tags: [
-      {
-        _id: "1",
-        name: "html",
-      },
-      {
-        _id: "2",
-        name: "javascript",
-      },
-    ],
-    author: {
-      _id: "2",
-      name: "Vasundhra Sharma",
-      picture: "",
-    },
-    upvotes: 5,
-    views: 200000,
-    answers: [{}],
-    createdAt: new Date("2023-11-07T12:00:00.000Z"),
-  },
-  {
-    _id: "3",
-    title:
-      "JavaScript validation for a form stops the form data from being submitted to mysql database",
-    tags: [
-      {
-        _id: "1",
-        name: "javascript",
-      },
-      {
-        _id: "2",
-        name: "sql",
-      },
-    ],
-    author: {
-      _id: "3",
-      name: "YashVardhan Sharma",
-      picture: "",
-    },
-    upvotes: 8,
-    views: 7000000,
-    answers: [{}],
-    createdAt: new Date("2023-03-07T12:00:00.000Z"),
-  },
-];
+import { getQuestions } from "@/lib/actions/question.action";
 
 const Home = async () => {
-  // const result = await getQuestions();
+  const result = await getQuestions({});
 
   return (
     <>
@@ -116,8 +40,8 @@ const Home = async () => {
       <HomeFilters />
 
       <div className="mt-10 flex w-full flex-col gap-6">
-        {questions.length > 0 ? (
-          questions.map((question) => (
+        {result.questions.length > 0 ? (
+          result.questions.map((question) => (
             <QuestionCard
               key={question._id}
               _id={question._id}
