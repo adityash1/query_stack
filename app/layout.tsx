@@ -11,7 +11,7 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const spaceGrotesk = Space_Grotesk({
+const space_grotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-spaceGrotesk",
@@ -41,7 +41,7 @@ export default function RootLayout({
       }}
     >
       <html lang="en">
-        <body className={`${inter.className} ${spaceGrotesk.className}`}>
+        <body className={`${inter.className} ${space_grotesk.className}`}>
           <ThemeProvider>{children}</ThemeProvider>
         </body>
       </html>

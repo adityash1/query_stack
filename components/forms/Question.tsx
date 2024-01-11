@@ -198,7 +198,7 @@ export function Question({ mongoUserId }: Props) {
                       {field.value.map((tag: any) => (
                         <Badge
                           key={tag}
-                          className="subtle-medium background-light800_dark300 text-light400_light500 flex-center rounder-md gap-2 border-none px-4 py-2 capitalize"
+                          className="subtle-medium background-light800_dark300 text-light400_light500 flex-center gap-2 rounded-md border-none px-4 py-2 capitalize"
                         >
                           {tag}
                           <Image
