@@ -86,6 +86,7 @@ const RightSidebar = () => {
           {popularTags.map((popularTag) => (
             <RenderTag
               key={popularTag._id}
+              // @ts-ignore
               _id={popularTag._id}
               name={popularTag.name}
               totalQuestions={popularTag.totalQuestions}
