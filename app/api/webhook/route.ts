@@ -1,6 +1,6 @@
-import { Webhook } from 'svix'
-import { headers } from 'next/headers'
-import { WebhookEvent } from '@clerk/nextjs/server'
+import {Webhook} from 'svix'
+import {headers} from 'next/headers'
+import {WebhookEvent} from '@clerk/nextjs/server'
 import {createUser, deleteUser, updateUser} from "@/lib/actions/user.action";
 import {NextResponse} from "next/server";
 
@@ -53,6 +53,8 @@ export async function POST(req: Request) {
     // const { id } = evt.data;
     const eventType = evt.type;
 
+    console.log("webhook trigerred ->", eventType)
+
     if (eventType === 'user.created') {
         const {id, email_addresses, image_url, username, first_name, last_name} = evt.data;
 
@@ -92,5 +94,5 @@ export async function POST(req: Request) {
         return NextResponse.json({message: 'OK', user: deletedUser})
     }
 
-    return new Response('', { status: 200 })
+    return new Response('', {status: 200})
 }
