@@ -45,6 +45,7 @@ export default function RootLayout({
         <body className={`${inter.className} ${spaceGrotesk.className}`}>
           <ThemeProvider>{children}</ThemeProvider>
           <Analytics />
+          <SpeedInsights />
         </body>
       </html>
     </ClerkProvider>
