@@ -4,6 +4,7 @@ import "./globals.css";
 import React from "react";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/context/ThemeProvider";
+import {Analytics} from "@vercel/analytics/react";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -43,6 +44,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={`${inter.className} ${spaceGrotesk.className}`}>
           <ThemeProvider>{children}</ThemeProvider>
+          <Analytics />
         </body>
       </html>
     </ClerkProvider>
