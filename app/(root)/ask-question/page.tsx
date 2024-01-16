@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { getUserById } from "@/lib/actions/user.action";
 
 const Page = async () => {
-  // const { userId } = auth;
+  // const { user } = auth;
 
   const userId = "12345";
 
