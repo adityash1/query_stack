@@ -6,33 +6,40 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const getTimestamp = (createdAt: Date): string => {
-  const now = new Date();
-  const diff = Math.abs(now.getTime() - createdAt.getTime());
+  const now: Date = new Date();
+  const timeDifference: number = now.getTime() - createdAt.getTime();
 
-  const seconds = Math.floor(diff / 1000);
-  if (seconds < 60) {
-    return `${seconds} seconds ago`;
+  // Define time intervals in milliseconds
+  const timeUnits: {
+    unit: string;
+    milliseconds: number;
+  }[] = [
+    { unit: "year", milliseconds: 365 * 24 * 60 * 60 * 1000 },
+    { unit: "month", milliseconds: 30 * 24 * 60 * 60 * 1000 },
+    { unit: "week", milliseconds: 7 * 24 * 60 * 60 * 1000 },
+    { unit: "day", milliseconds: 24 * 60 * 60 * 1000 },
+    { unit: "hour", milliseconds: 60 * 60 * 1000 },
+    { unit: "minute", milliseconds: 60 * 1000 },
+    { unit: "second", milliseconds: 1000 },
+  ];
+
+  for (const { unit, milliseconds } of timeUnits) {
+    const time: number = Math.floor(timeDifference / milliseconds);
+    if (time >= 1) {
+      return `${time} ${unit}${time === 1 ? "s" : ""} ago`;
+    }
   }
 
-  const minutes = Math.floor(diff / (1000 * 60));
-  if (minutes < 60) {
-    return `${minutes} minutes ago`;
-  }
-
-  const hours = Math.floor(diff / (1000 * 60 * 60));
-  if (hours < 24) {
-    return `${hours} ${hours === 1 ? "hour" : "hours"} ago`;
-  }
-
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  return `${days} ${days === 1 ? "day" : "days"} ago`;
+  return "Just now";
 };
 
-export const formatNumber = (num: number): string => {
+export const formatAndDivideNumber = (num: number): string => {
   if (num >= 1000000) {
-    return (num / 1000000).toFixed(1) + "M";
+    const formattedNum = (num / 1000000).toFixed(1);
+    return `${formattedNum}M`;
   } else if (num >= 1000) {
-    return (num / 1000).toFixed(1) + "K";
+    const formattedNum = (num / 1000).toFixed(1);
+    return `${formattedNum}K`;
   } else {
     return num.toString();
   }
