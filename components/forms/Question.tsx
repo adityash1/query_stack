@@ -13,14 +13,15 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { questionSchema } from "@/lib/validations";
+import { QuestionSchema } from "@/lib/validations";
 import { Editor } from "@tinymce/tinymce-react";
 import React, { useRef, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { createQuestion } from "@/lib/actions/question.action";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useTheme } from "@/context/ThemeProvider";
 
 const type: any = "create";
 
@@ -29,13 +30,14 @@ interface Props {
 }
 
 export function Question({ mongoUserId }: Props) {
+  const { mode } = useTheme();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const editorRef = useRef(null);
   const router = useRouter();
   const pathname = usePathname();
 
-  const form = useForm<z.infer<typeof questionSchema>>({
-    resolver: zodResolver(questionSchema),
+  const form = useForm<z.infer<typeof QuestionSchema>>({
+    resolver: zodResolver(QuestionSchema),
     defaultValues: {
       title: "",
       explanation: "",
@@ -43,7 +45,7 @@ export function Question({ mongoUserId }: Props) {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof questionSchema>) {
+  async function onSubmit(values: z.infer<typeof QuestionSchema>) {
     setIsSubmitting(true);
     try {
       await createQuestion({
@@ -166,8 +168,8 @@ export function Question({ mongoUserId }: Props) {
                       "codesample | bold italic forecolor | alignleft aligncenter " +
                       "alignright alignjustify | bullist numlist",
                     content_style: "body { font-family:Inter; font-size:16px }",
-                    skin: "jam",
-                    icons: "jam",
+                    skin: mode === "dark" ? "oxide-dark" : "oxide",
+                    content_css: mode === "dark" ? "dark" : "light",
                   }}
                 />
               </FormControl>

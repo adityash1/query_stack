@@ -5,11 +5,21 @@ import Metric from "@/components/shared/Metric";
 import { formatAndDivideNumber, getTimestamp } from "@/lib/utils";
 import ParseHTML from "@/components/shared/ParseHTML";
 import RenderTag from "@/components/shared/RenderTag";
+import Answer from "@/components/forms/Answer";
+import { auth } from "@clerk/nextjs";
+import { getUserById } from "@/lib/actions/user.action";
+import AllAnswers from "@/components/shared/AllAnswers";
 
 const Page = async ({ params }) => {
   const result = await getQuestionById({
     questionId: params.id,
   });
+  const { userId: clerkId } = auth();
+
+  let mongoUser;
+  if (clerkId) {
+    mongoUser = await getUserById({ userId: clerkId });
+  }
 
   return (
     <>
@@ -72,6 +82,18 @@ const Page = async ({ params }) => {
           />
         ))}
       </div>
+
+      <AllAnswers
+        questionId={result._id}
+        userId={JSON.stringify(mongoUser._id)}
+        totalAnswers={result.answers.length}
+      />
+
+      <Answer
+        question={result.question}
+        questionId={JSON.stringify(result._id)}
+        authorId={JSON.stringify(mongoUser._id)}
+      />
     </>
   );
 };
