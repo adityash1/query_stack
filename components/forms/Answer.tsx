@@ -39,7 +39,6 @@ const Answer = ({ question, questionId, authorId }: Props) => {
   });
 
   const handleCreateAnswer = async (values: z.infer<typeof AnswerSchema>) => {
-    console.log("submitting ->", values);
     setIsSubmitting(true);
     try {
       await createAnswer({

@@ -1,6 +1,7 @@
 "use server";
 
 import {
+  AnswerVoteParams,
   CreateAnswerParams,
   GetAnswersParams,
 } from "@/lib/actions/shared.types";
@@ -46,5 +47,95 @@ export async function getAnswers(params: GetAnswersParams) {
   } catch (e) {
     console.log(e);
     throw e;
+  }
+}
+
+export async function upvoteAnswer(params: AnswerVoteParams) {
+  try {
+    connectToDatabase();
+    const { answerId, userId, hasupVoted, hasdownVoted, path } = params;
+
+    let updateQuery = {};
+
+    if (hasupVoted) {
+      updateQuery = {
+        $pull: {
+          upvotes: userId,
+        },
+      };
+    } else if (hasdownVoted) {
+      updateQuery = {
+        $pull: {
+          downvotes: userId,
+        },
+        $push: {
+          upvotes: userId,
+        },
+      };
+    } else {
+      updateQuery = {
+        $addToSet: {
+          upvotes: userId,
+        },
+      };
+    }
+
+    const answer = await Answer.findByIdAndUpdate(answerId, updateQuery, {
+      new: true,
+    });
+
+    if (!answer) {
+      throw new Error("Answer not found");
+    }
+
+    revalidatePath(path);
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function downvoteAnswer(params: AnswerVoteParams) {
+  try {
+    connectToDatabase();
+    const { answerId, userId, hasupVoted, hasdownVoted, path } = params;
+
+    let updateQuery = {};
+
+    if (hasdownVoted) {
+      updateQuery = {
+        $pull: {
+          downvotes: userId,
+        },
+      };
+    } else if (hasupVoted) {
+      updateQuery = {
+        $pull: {
+          upvotes: userId,
+        },
+        $push: {
+          downvotes: userId,
+        },
+      };
+    } else {
+      updateQuery = {
+        $addToSet: {
+          downvotes: userId,
+        },
+      };
+    }
+
+    const answer = await Answer.findByIdAndUpdate(answerId, updateQuery, {
+      new: true,
+    });
+
+    if (!answer) {
+      throw new Error("Answer not found");
+    }
+
+    revalidatePath(path);
+  } catch (error) {
+    console.log(error);
+    throw error;
   }
 }

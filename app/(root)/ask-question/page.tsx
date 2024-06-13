@@ -4,13 +4,11 @@ import { redirect } from "next/navigation";
 import { getUserById } from "@/lib/actions/user.action";
 
 const Page = async () => {
-    const { userId } : { userId: string | null } = auth();
+  const { userId }: { userId: string | null } = auth();
 
   if (!userId) redirect("/sign-in");
 
   const mongoUser = await getUserById({ userId });
-
-  console.log(mongoUser);
 
   return (
     <>
