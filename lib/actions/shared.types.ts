@@ -87,8 +87,16 @@ export interface AnswerVoteParams {
   path: string;
 }
 
-export interface SaveQuestionParams {
+export interface ToggleSaveQuestionParams {
   userId: string;
   questionId: string;
   path: string;
+}
+
+export interface GetSavedQuestionsParams {
+  clerkId: string;
+  page?: number;
+  pageSize?: number;
+  filter?: string;
+  searchQuery?: string;
 }
