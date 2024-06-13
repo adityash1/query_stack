@@ -86,3 +86,9 @@ export interface AnswerVoteParams {
   hasdownVoted: boolean;
   path: string;
 }
+
+export interface SaveQuestionParams {
+  userId: string;
+  questionId: string;
+  path: string;
+}

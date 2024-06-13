@@ -5,11 +5,10 @@ import {
   downvoteQuestion,
   upvoteQuestion,
 } from "@/lib/actions/question.action";
+import { saveQuestion } from "@/lib/actions/user.action";
 import { formatAndDivideNumber } from "@/lib/utils";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-// import { useRouter } from "next/router";
-
 interface Props {
   type: string;
   itemId: string;
@@ -33,7 +32,15 @@ const Votes = ({
 }: Props) => {
   const pathname = usePathname();
 
-  const handleSave = () => {};
+  const handleSave = async () => {
+    await saveQuestion({
+      questionId: JSON.parse(itemId),
+      userId: JSON.parse(userId),
+      path: pathname,
+    });
+
+    // todo: show a toast
+  };
 
   const handleVote = async (action: string) => {
     if (!userId) {
