@@ -39,7 +39,7 @@ module.exports = {
         "accent-blue": "#1DA1F2",
       },
       fontFamily: {
-        inter: ["var(--font-inter)"],
+        sans: ["var(--font-geist-sans)"],
         spaceGrotesk: ["var(--font-spaceGrotesk)"],
       },
       boxShadow: {
