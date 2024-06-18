@@ -7,8 +7,9 @@ import {
 } from "@/lib/actions/shared.types";
 import { connectToDatabase } from "@/lib/mongoose";
 import User from "@/database/user.model";
-import Tag from "@/database/tag.model";
+import Tag, { ITag } from "@/database/tag.model";
 import Question from "@/database/question.model";
+import { FilterQuery } from "mongoose";
 
 export async function getTopInteractedTags(params: GetTopInteractedTagsParams) {
   try {
@@ -45,10 +46,19 @@ export async function getAllTags(params: GetAllTagsParams) {
 export async function getQuestionsByTagID(params: GetQuestionsByTagIdParams) {
   try {
     await connectToDatabase();
-    const { tagId } = params;
-    const tag = await Tag.findById(tagId).populate({
+
+    const { tagId, page = 1, pageSize = 10, searchQuery } = params;
+
+    const tagFilter: FilterQuery<ITag> = { _id: tagId };
+
+    const tag = await Tag.findOne(tagFilter).populate({
       path: "questions",
       model: Question,
+      match: searchQuery
+        ? {
+            title: { $regex: searchQuery, $options: "i" },
+          }
+        : {},
       options: {
         sort: { createdAt: -1 },
       },
@@ -71,7 +81,8 @@ export async function getQuestionsByTagID(params: GetQuestionsByTagIdParams) {
     }
 
     const questions = tag.questions;
-    return { questions };
+
+    return { tagTitle: tag.name, questions };
   } catch (error) {
     console.log(error);
     throw error;
