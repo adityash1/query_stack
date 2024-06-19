@@ -1,6 +1,10 @@
 import { Schema } from "mongoose";
 import { IUser } from "@/database/user.model";
 
+export interface GetUserByIdParams {
+  userId: string;
+}
+
 export interface GetQuestionsParams {
   page?: number;
   pageSize?: number;
