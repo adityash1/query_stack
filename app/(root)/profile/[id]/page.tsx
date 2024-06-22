@@ -1,15 +1,17 @@
 import ProfileLink from "@/components/shared/ProfileLink";
+import QuestionsTab from "@/components/shared/QuestionsTab";
 import Stats from "@/components/shared/cards/Stats";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getUserInfo } from "@/lib/actions/user.action";
 import { getJoinedDate } from "@/lib/utils";
+import { URLProps } from "@/types";
 import { SignedIn, auth } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const Page = async ({ params }: { params: { id: string } }) => {
+const Page = async ({ params, searchParams }: URLProps) => {
   const { userId: clerkId } = auth();
 
   const userInfo = await getUserInfo({ userId: params.id });
@@ -88,7 +90,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
       />
 
       <div className="mt-10 flex gap-10">
-        <Tabs defaultValue="top-posts" className="flex-1">
+        <Tabs defaultValue="questions" className="flex-1">
           <TabsList className="background-light800_dark400 min-h-[42px] p-1">
             <TabsTrigger value="top-posts" className="tab">
               Top Posts
@@ -98,7 +100,11 @@ const Page = async ({ params }: { params: { id: string } }) => {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="top-posts">
-            Make changes to your account here.
+            <QuestionsTab
+              searchParams={searchParams}
+              userId={userInfo.user._id}
+              clerkId={userInfo.user.clerkId}
+            />
           </TabsContent>
           <TabsContent value="answers">Change your password here.</TabsContent>
         </Tabs>

@@ -8,3 +8,7 @@ export interface SidebarLinkType {
   label: string;
   icon: string;
 }
+
+export interface SearchParamsProps {
+  searchParams: { [key: string]: string | undefined };
+}
