@@ -29,6 +29,11 @@ interface Props {
   mongoUserId: string;
 }
 
+interface Tag {
+  _id: string;
+  name: string;
+}
+
 export function Question({ type, questionDetails, mongoUserId }: Props) {
   const { mode } = useTheme();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -37,7 +42,7 @@ export function Question({ type, questionDetails, mongoUserId }: Props) {
   const pathname = usePathname();
 
   const parsedQuestionDetails = JSON.parse(questionDetails || "");
-  const groupedTags = parsedQuestionDetails.tags.map((tag) => tag.name);
+  const groupedTags = parsedQuestionDetails.tags.map((tag: Tag) => tag.name);
 
   const form = useForm<z.infer<typeof QuestionSchema>>({
     resolver: zodResolver(QuestionSchema),

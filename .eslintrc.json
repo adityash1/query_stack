@@ -1,6 +1,12 @@
 {
   "rules": {
-    "camelcase": "off"
+    "camelcase": "off",
+    "no-unused-vars": "warn"
   },
-  "extends": ["next/core-web-vitals", "standard", "plugin:tailwindcss/recommended", "prettier"]
+  "extends": [
+    "next/core-web-vitals",
+    "standard",
+    "plugin:tailwindcss/recommended",
+    "prettier"
+  ]
 }
