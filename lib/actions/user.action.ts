@@ -5,7 +5,6 @@ import User from "@/database/user.model";
 import {
   CreateUserParams,
   DeleteUserParams,
-  EditProfileParams,
   GetAllUsersParams,
   GetSavedQuestionsParams,
   GetUserByIdParams,

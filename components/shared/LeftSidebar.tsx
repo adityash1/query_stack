@@ -35,7 +35,7 @@ export const LeftSidebar = () => {
                 isActive
                   ? "primary-gradient rounded-lg text-light-900"
                   : "text-dark300_light900"
-              } flex items-center justify-start gap-x-4 bg-transparent px-4 py-2`}
+              } flex items-center justify-start gap-x-4 rounded-lg bg-transparent px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800`}
             >
               <Image
                 src={item.icon}

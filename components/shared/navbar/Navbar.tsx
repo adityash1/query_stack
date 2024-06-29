@@ -12,10 +12,10 @@ const Navbar = () => {
         <Image
           src="/assets/images/site-logo.svg"
           alt="QueryStack"
-          width={48}
-          height={48}
+          width={32}
+          height={32}
         />
-        <p className="h2-bold max-sm:h3-bold font-spaceGrotesk text-dark-100 dark:text-light-900">
+        <p className="h3-bold max-sm:h3-bold font-spaceGrotesk text-dark-100 dark:text-light-900">
           Query <span className="text-primary-500">Stack</span>
         </p>
       </Link>
@@ -27,7 +27,7 @@ const Navbar = () => {
             afterSignOutUrl="/"
             appearance={{
               elements: {
-                avatarBox: "h-10 w-10",
+                avatarBox: "h-8 w-8",
               },
               variables: {
                 colorPrimary: "#ff0000",
