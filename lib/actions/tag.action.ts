@@ -88,3 +88,39 @@ export async function getQuestionsByTagID(params: GetQuestionsByTagIdParams) {
     throw error;
   }
 }
+
+export async function getTopPopularTags() {
+  try {
+    const topTags = await Tag.aggregate([
+      {
+        $addFields: {
+          totalQuestions: { $size: "$questions" },
+          totalFollowers: { $size: "$followers" },
+        },
+      },
+      {
+        $addFields: {
+          totalScore: { $add: ["$totalQuestions", "$totalFollowers"] },
+        },
+      },
+      {
+        $sort: { totalScore: -1 },
+      },
+      {
+        $limit: 5,
+      },
+      {
+        $project: {
+          name: 1,
+          totalQuestions: 1,
+          totalFollowers: 1,
+        },
+      },
+    ]);
+
+    return topTags;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
