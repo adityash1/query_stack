@@ -7,15 +7,15 @@ import GlobalSearch from "@/components/shared/search/GlobalSearch";
 
 const Navbar = () => {
   return (
-    <nav className="flex-between background-light900_dark200 fixed z-50 w-full gap-5 px-6 py-2 shadow-light-300 dark:shadow-none">
-      <Link href="/" className="flex items-center gap-2">
+    <nav className="flex-between background-light900_dark200 light-border fixed z-50 w-full gap-4 border-b py-[6px] pl-2 pr-9">
+      <Link href="/" className="flex items-center gap-1">
         <Image
           src="/assets/images/site-logo.svg"
           alt="QueryStack"
-          width={32}
-          height={32}
+          width={28}
+          height={28}
         />
-        <p className="h3-bold max-sm:h3-bold font-spaceGrotesk text-dark-100 dark:text-light-900">
+        <p className="h3-semibold max-sm:h3-semibold font-spaceGrotesk text-dark-100 dark:text-light-900">
           Query <span className="text-primary-500">Stack</span>
         </p>
       </Link>
@@ -27,7 +27,7 @@ const Navbar = () => {
             afterSignOutUrl="/"
             appearance={{
               elements: {
-                avatarBox: "h-8 w-8",
+                avatarBox: "h-7 w-7",
               },
               variables: {
                 colorPrimary: "#ff0000",

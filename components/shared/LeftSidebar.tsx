@@ -12,8 +12,8 @@ export const LeftSidebar = () => {
   const { userId } = useAuth();
 
   return (
-    <section className="background-light900_dark200 light-border custom-scrollbar sticky left-0 top-0 flex h-screen flex-col justify-between overflow-y-auto border-r p-6 pt-24 shadow-light-300 dark:shadow-none max-sm:hidden lg:w-[266px]">
-      <div className="flex flex-1 flex-col gap-2">
+    <section className="background-light900_dark200 light-border custom-scrollbar sticky left-0 top-0 flex h-screen flex-col justify-between overflow-y-auto border-r p-[6px] pt-16 max-sm:hidden lg:w-[206px]">
+      <div className="flex flex-1 flex-col gap-1">
         {sidebarLinks.map((item) => {
           const isActive =
             (pathname.includes(item.route) && item.route.length > 1) ||
@@ -31,26 +31,17 @@ export const LeftSidebar = () => {
             <Link
               key={item.route}
               href={item.route}
-              className={`${
-                isActive
-                  ? "primary-gradient rounded-lg text-light-900"
-                  : "text-dark300_light900"
-              } flex items-center justify-start gap-x-4 rounded-lg bg-transparent px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800`}
+              className={`${isActive ? "background-light800_dark400" : ""} 
+              text-dark400_light700 flex h-[34px] items-center justify-start gap-x-2 rounded-md bg-transparent px-[6px] hover:bg-light-800 dark:hover:bg-dark-400`}
             >
               <Image
                 src={item.icon}
                 alt={item.label}
-                width={20}
-                height={20}
-                className={`${isActive ? "" : "invert-colors"}`}
+                width={18}
+                height={18}
+                className="invert-colors"
               />
-              <p
-                className={`${
-                  isActive ? "paragraph-regular font-bold" : "paragraph-regular"
-                } max-lg:hidden`}
-              >
-                {item.label}
-              </p>
+              <p className="body-medium max-lg:hidden">{item.label}</p>
             </Link>
           );
         })}
@@ -63,8 +54,8 @@ export const LeftSidebar = () => {
               <Image
                 src="/assets/icons/account.svg"
                 alt="login"
-                width={20}
-                height={20}
+                width={18}
+                height={18}
                 className="invert-colors lg:hidden"
               />
               <span className="primary-text-gradient max-lg:hidden">Login</span>
@@ -76,8 +67,8 @@ export const LeftSidebar = () => {
               <Image
                 src="/assets/icons/sign-up.svg"
                 alt="signup"
-                width={20}
-                height={20}
+                width={18}
+                height={18}
                 className="invert-colors lg:hidden"
               />
               <span className="max-lg:hidden">Signup</span>

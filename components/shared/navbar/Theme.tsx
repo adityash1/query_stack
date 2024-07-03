@@ -24,21 +24,21 @@ const Theme = () => {
             <Image
               src="/assets/icons/sun.svg"
               alt="sun"
-              width={20}
-              height={20}
+              width={18}
+              height={18}
               className="active-theme"
             />
           ) : (
             <Image
               src="/assets/icons/moon.svg"
-              alt="sun"
-              width={20}
-              height={20}
+              alt="moon"
+              width={18}
+              height={18}
               className="active-theme"
             />
           )}
         </MenubarTrigger>
-        <MenubarContent className="absolute -right-12 mt-3 min-w-[120px] rounded border py-2 dark:border-dark-400 dark:bg-dark-300">
+        <MenubarContent className="background-light900_dark300 absolute -right-12 mt-3 min-w-[120px] rounded border py-2 dark:border-dark-400">
           {themes.map((item) => (
             <MenubarItem
               key={item.value}
@@ -55,8 +55,8 @@ const Theme = () => {
               <Image
                 src={item.icon}
                 alt={item.value}
-                width={16}
-                height={16}
+                width={18}
+                height={18}
                 className={`${mode === item.value && "active-theme"}`}
               />
               <p

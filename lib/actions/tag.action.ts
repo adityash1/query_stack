@@ -93,14 +93,13 @@ export async function getTopPopularTags() {
   try {
     const topTags = await Tag.aggregate([
       {
-        $addFields: {
+        $project: {
+          name: 1,
           totalQuestions: { $size: "$questions" },
           totalFollowers: { $size: "$followers" },
-        },
-      },
-      {
-        $addFields: {
-          totalScore: { $add: ["$totalQuestions", "$totalFollowers"] },
+          totalScore: {
+            $add: [{ $size: "$questions" }, { $size: "$followers" }],
+          },
         },
       },
       {
