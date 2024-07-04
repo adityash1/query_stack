@@ -16,3 +16,14 @@ export interface SearchParamsProps {
 export interface ParamsProps {
   params: { id: string };
 }
+
+export interface UrlQueryParams {
+  params: string;
+  key: string;
+  value: string | null;
+}
+
+export interface RemoveUrlQueryParams {
+  params: string;
+  keysToRemove: string[];
+}
