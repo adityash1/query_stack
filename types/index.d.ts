@@ -15,6 +15,7 @@ export interface SearchParamsProps {
 
 export interface ParamsProps {
   params: { id: string };
+  searchParams: SearchParamsProps;
 }
 
 export interface UrlQueryParams {

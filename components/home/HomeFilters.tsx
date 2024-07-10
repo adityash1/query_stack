@@ -12,7 +12,7 @@ const HomeFilters = () => {
 
   const [active, setActive] = useState("");
 
-  const handleTypeClick = (item: string) => {
+  const handleFilterChange = (item: string) => {
     if (active !== item) {
       setActive(item);
       const newUrl = formUrlQuery({
@@ -38,7 +38,7 @@ const HomeFilters = () => {
       {HomePageFilters.map((item) => (
         <Button
           key={item.value}
-          onClickCapture={() => handleTypeClick(item.value)}
+          onClickCapture={() => handleFilterChange(item.value)}
           className={`body-medium rounded-lg px-6 py-3 capitalize shadow-none ${
             active === item.value
               ? "bg-primary-100 text-primary-500"

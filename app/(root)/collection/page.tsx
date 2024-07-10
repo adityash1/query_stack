@@ -1,11 +1,10 @@
 import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 import Filter from "@/components/shared/Filter";
-import { HomePageFilters } from "@/constants/filters";
+import { SavedQuestionFilters } from "@/constants/filters";
 import NoResult from "@/components/shared/NoResult";
 import QuestionCard from "@/components/shared/cards/QuestionCard";
 import { getSavedQuestion } from "@/lib/actions/user.action";
 import { auth } from "@clerk/nextjs";
-// import HomeFilters from "@/components/home/HomeFilters";
 import { SearchParamsProps } from "@/types";
 
 const Page = async ({ searchParams }: SearchParamsProps) => {
@@ -16,6 +15,7 @@ const Page = async ({ searchParams }: SearchParamsProps) => {
   const result = await getSavedQuestion({
     clerkId,
     searchQuery: searchParams.q,
+    filter: searchParams.filter,
   });
 
   return (
@@ -31,7 +31,7 @@ const Page = async ({ searchParams }: SearchParamsProps) => {
           otherClasses="flex-1"
         />
         <Filter
-          filters={HomePageFilters}
+          filters={SavedQuestionFilters}
           otherClasses="min-h-[56px] sm:min-w-[170px]"
           containerClasses="max-md:flex"
         />

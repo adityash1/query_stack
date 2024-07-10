@@ -73,6 +73,7 @@ export interface GetAnswersParams {
   sortBy?: string;
   page?: number;
   pageSize?: number;
+  filter?: string;
 }
 
 export interface QuestionVoteParams {
