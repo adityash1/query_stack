@@ -27,6 +27,8 @@ const Pagination = ({ pageNumber, isNext }: Props) => {
     router.push(newUrl);
   };
 
+  if (!isNext && pageNumber === 1) return null;
+
   return (
     <div className="flex-center w-full gap-2">
       <Button
@@ -40,7 +42,7 @@ const Pagination = ({ pageNumber, isNext }: Props) => {
         <p className="body-semibold text-light-900">{pageNumber}</p>
       </div>
       <Button
-        disabled={isNext}
+        disabled={!isNext}
         onClick={() => handleNavigation("next")}
         className="light-border-2 btn flex-center min-h-[36px] gap-2 border"
       >
