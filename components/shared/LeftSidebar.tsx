@@ -12,7 +12,7 @@ export const LeftSidebar = () => {
   const { userId } = useAuth();
 
   return (
-    <section className="background-light900_dark200 light-border custom-scrollbar sticky left-0 top-0 flex h-screen flex-col justify-between overflow-y-auto border-r p-[6px] pt-16 max-sm:hidden lg:w-[206px]">
+    <section className="background-light900_dark200 light-border custom-scrollbar sticky left-0 top-0 flex h-screen flex-col justify-between overflow-y-auto border-r p-3 pt-16 max-sm:hidden lg:w-[206px]">
       <div className="flex flex-1 flex-col gap-1">
         {sidebarLinks.map((item) => {
           const isActive =
@@ -32,7 +32,7 @@ export const LeftSidebar = () => {
               key={item.route}
               href={item.route}
               className={`${isActive ? "background-light800_dark400" : ""} 
-              text-dark400_light700 flex h-[34px] items-center justify-start gap-x-2 rounded-md bg-transparent px-[6px] hover:bg-light-800 dark:hover:bg-dark-400`}
+              text-dark400_light700 flex h-[34px] items-center justify-start gap-x-2 rounded-md bg-transparent px-4 hover:bg-light-800 dark:hover:bg-dark-400`}
             >
               <Image
                 src={item.icon}

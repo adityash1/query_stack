@@ -140,3 +140,8 @@ export interface EditQuestionParams {
   content: string;
   path: string;
 }
+
+export interface SearchParams {
+  query?: string | null;
+  type?: string | null;
+}
