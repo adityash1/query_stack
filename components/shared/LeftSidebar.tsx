@@ -12,7 +12,7 @@ export const LeftSidebar = () => {
   const { userId } = useAuth();
 
   return (
-    <section className="background-light900_dark200 light-border custom-scrollbar sticky left-0 top-0 flex h-screen flex-col justify-between overflow-y-auto border-r p-3 pt-16 max-sm:hidden lg:w-[206px]">
+    <section className="background-light900_dark200 light-border custom-scrollbar sticky left-0 top-0 flex h-screen flex-col justify-between overflow-y-auto border-r p-3 pt-20 max-sm:hidden lg:w-[206px]">
       <div className="flex flex-1 flex-col gap-1">
         {sidebarLinks.map((item) => {
           const isActive =
