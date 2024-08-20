@@ -38,9 +38,11 @@ const Page = async ({ searchParams }: SearchParamsProps) => {
         ) : (
           <div className="paragraph-regular text-dark200_light800 mx-auto max-w-4xl text-center">
             <p>No Users Yet</p>
-            <Link href="/sign-up" className="mt-2 font-bold text-accent-blue">
-              Join to be the first!
-            </Link>
+            <div>
+              <Link href="/sign-up" className="font-bold text-accent-blue">
+                Join to be the first!
+              </Link>
+            </div>
           </div>
         )}
       </section>
