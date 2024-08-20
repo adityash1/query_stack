@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { createAnswer } from "@/lib/actions/answer.action";
 import { usePathname } from "next/navigation";
+import { toast } from "../ui/use-toast";
 
 interface Props {
   question: string;
@@ -86,7 +87,9 @@ const Answer = ({ question, questionId, authorId }: Props) => {
         editor.setContent(formattedAnswer);
       }
 
-      // TODO: toast notification
+      return toast({
+        title: `Answer Generated`,
+      });
     } catch (error) {
       console.log(error);
     } finally {
