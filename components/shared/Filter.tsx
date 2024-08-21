@@ -57,7 +57,7 @@ const Filter = ({ filters, otherClasses, containerClasses }: Props) => {
               <SelectItem
                 key={item.value}
                 value={item.value}
-                className="focus:bg-light-800 dark:focus:bg-dark-400 cursor-pointer"
+                className="cursor-pointer focus:bg-light-800 dark:focus:bg-dark-400"
               >
                 {item.name}
               </SelectItem>

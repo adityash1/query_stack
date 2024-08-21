@@ -145,3 +145,10 @@ export interface SearchParams {
   query?: string | null;
   type?: string | null;
 }
+
+export interface RecommendedParams {
+  userId: string;
+  page?: number;
+  pageSize?: number;
+  searchQuery?: string;
+}
