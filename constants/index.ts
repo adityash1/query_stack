@@ -35,7 +35,7 @@ export const sidebarLinks: SidebarLinkType[] = [
     icon: "/assets/icons/star.svg",
   },
   {
-    route: "/find-jobs",
+    route: "/jobs",
     label: "Find Jobs",
     icon: "/assets/icons/suitcase.svg",
   },

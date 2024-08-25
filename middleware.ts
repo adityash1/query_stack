@@ -10,7 +10,7 @@ export default authMiddleware({
     "/community",
     "/profile/:id",
     "/jobs",
-    "/question/:id",
+    // "/question/:id",
   ],
   ignoredRoutes: ["/api/webhook"],
 });
