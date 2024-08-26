@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Query-Stack
 
-## Getting Started
+A full-stack Q&A platform built with Next.js 14, MongoDB and Gemini AI integrated.
 
-First, run the development server:
+## Tech Stack
+
+- **Frontend**: Next.js 14, Shadcn UI, TailwindCSS
+- **Backend**: Next.js server actions, Mongoose
+- **AI Integration**: Google Generative AI
+- **Authentication**: Clerk via webhooks
+
+## Key Features
+
+- Server-side rendering for improved SEO and performance
+- Next.js server actions for CRUD operations 
+- Real-time updates by utilising revalidatePath ([nextjs/cache](https://nextjs.org/docs/app/api-reference/functions/revalidatePath)) for optimistic UI
+- AI-powered answer generation using Google Generative AI
+- Reputation system with MongoDB aggregation pipelines
+- Global search functionality
+- Responsive design with TailwindCSS
+
+## Running Locally
+Clone the repository & install dependencies
+```bash
+git clone https://github.com/adityash1/query_stack.git
+pnpm install
+```
+Add the required environment variables in `.env` (example file provided in `.env.example`). You will need to make an account on [Clerk](https://clerk.com/) and [TinyMCE](https://www.tiny.cloud/) to get API keys.
+
+Then, run in development mode
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Path               | Description                                                                |
+| ------------------ | -------------------------------------------------------------------------- |
+| `app`         | The Next.js application frontend.                                  |
+| `database`   | Mongoose models for the database                                              |
+| `lib/`  | zod validations schemas, utils, etc. |
+| `lib/actions` | Next.js server actions.                         |
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## API Routes
+- `/api/webhook`: user management via clerk auth
+- `/api/gemini`: AI-powered answer generation based on the question context.
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This application is configured for deployment on Vercel. Ensure environment variables are properly set in the Vercel dashboard before deploying.
